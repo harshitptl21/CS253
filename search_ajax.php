@@ -39,12 +39,20 @@ function search_get($data)
                 // If user is female show all trip
                 $filtered_trips[] = $trip;
             } else{
+                // If user is male and selected women_only
+                if ($data['women_only']) {
+                    return functions\json_respond('ERROR', 'Only For Female User');
+                }
                 // If user is male, only show trips where women_only is not 1
                 if ($trip['women_only'] != 1) {
                     $filtered_trips[] = $trip;
                 }
             }
         } else {
+            // If no user is logged in and selected women_only
+            if ($data['women_only']) {
+                return functions\json_respond('ERROR', 'Only For Female User');
+            }
             // If no user is logged in, show all non-women-only trips
             if ($trip['women_only'] != 1) {
                 $filtered_trips[] = $trip;
