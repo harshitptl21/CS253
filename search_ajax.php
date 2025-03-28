@@ -23,22 +23,30 @@ function search_get($data)
     // Filter trips based on gender and women-only search
     $filtered_trips = array();
     foreach ($trips as $trip) {
+        // If the user is logged in and is the driver, skip their own trips
         if ($user_id && $trip['driver']['id'] == $user_id) {
             continue;
         }
-        if (isset($data['women_only']) && $data['women_only']) {
-            if ($trip['women_only'] == 1) {
+
+        if ($user_id) {
+            $user = user\get_user($user_id);
+            if ($user['gender'] == 0 && $data['women_only']) {  
+                // If user is female and selected women_only
+                if ($trip['women_only'] == 1) {
+                    $filtered_trips[] = $trip;
+                } 
+            } elseif($user['gender'] == 0) {
+                // If user is female show all trip
                 $filtered_trips[] = $trip;
-            }
-        } else {
-            if ($user_id) {
-                $user = user\get_user($user_id);
-                if ($user && $user['gender'] == 0) {  
-                    $filtered_trips[] = $trip;  
-                } else if ($trip['women_only'] == 0) {  
+            } else{
+                // If user is male, only show trips where women_only is not 1
+                if ($trip['women_only'] != 1) {
                     $filtered_trips[] = $trip;
                 }
-            } else if ($trip['women_only'] == 0) { 
+            }
+        } else {
+            // If no user is logged in, show all non-women-only trips
+            if ($trip['women_only'] != 1) {
                 $filtered_trips[] = $trip;
             }
         }
