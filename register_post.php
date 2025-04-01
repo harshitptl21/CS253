@@ -34,10 +34,20 @@ if (empty($_POST)) {
         $status = 'Error!';
         $msg = 'Missing fields: ' . implode(', ', $missing_fields);
     } else {
-        user\add_user($user_data);
-        user\authenticate_user($user_data['email_address'], $user_data['password']);
-        $status = 'Success!';
-        $msg = 'You have successfully registered for Ride With Us!';
+        // Check if email already exists
+        if (user\user_exists($user_data['email_address'])) {
+            $status = 'Error!';
+            $msg = 'This email address is already registered. Please use a different email or login to your existing account.';
+        } else {
+            if (user\add_user($user_data)) {
+                user\authenticate_user($user_data['email_address'], $user_data['password']);
+                $status = 'Success!';
+                $msg = 'You have successfully registered for Ride With Us!';
+            } else {
+                $status = 'Error!';
+                $msg = 'Registration failed. Please try again.';
+            }
+        }
     }
 }
 include 'templates/head.php';
