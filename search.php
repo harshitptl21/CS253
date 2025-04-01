@@ -33,7 +33,7 @@ include "templates/head.php";
           <div class="control-group" id="search-departure">
             <label class="control-label">Date</label>
             <div class="controls">
-              <div class="input-append date" id="search-departure-date" data-date="01-04-2025"
+              <div class="input-append date" id="search-departure-date" data-date=""
                 data-date-format="dd-mm-yyyy">
                 <input class="span8" size="16" type="text">
                 <span class="add-on"><i class="icon-calendar"></i></span>
@@ -130,7 +130,7 @@ include "templates/head.php";
   <strong><i class="icon icon-time"></i> Departure: </strong><%= departure_string %><br>
   <strong><i class="icon icon-user"></i> Driver: </strong><%= driver.first_name %> <%= driver.last_name %><br>
   <strong><i class="icon icon-road"></i> Trip Length: </strong><%= length %><br>
-  <strong><i class="icon icon-tasks"></i> Spots Remaining: </strong><%= spots %><br>
+  <strong><i class="icon icon-tasks"></i> Spots Remaining: </strong><%= spots - spots_taken %><br>
   <strong><i class="icon icon-comment"></i> Message: </strong><%= message %><br>
 </script>
 
