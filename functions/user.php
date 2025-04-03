@@ -142,65 +142,6 @@ function add_user($data)
 }
 
 /**
- * Updates the following user from the database.
- * @param $data an associative array containing the new user data.
- * @return boolean whether the user update was successful.
- */
-function update_user($data)
-{
-    global $connection;
-    $user_table = USER_TABLE;
-    $id = functions\sanitize_string($data['id']);
-    $first_name = functions\sanitize_string($data['first_name']);
-    $last_name = functions\sanitize_string($data['last_name']);
-    $email_address = functions\sanitize_string($data['email_address']);
-    $drivers_license_id = functions\sanitize_string($data['drivers_license_id']);
-    $gender = (int) functions\sanitize_string($data['gender']);
-    $password = encrypt_password($data['password']);
-    $query =
-        "UPDATE $user_table SET 
-            first_name = '$first_name',
-            last_name = '$last_name',
-            email_address = '$email_address',
-            drivers_license_id = '$drivers_license_id',
-            gender = '$gender',
-            password = '$password'
-         WHERE id = $id";
-    if (mysqli_query($connection, $query))
-        return true;
-    error_log("Failed to update user: " . mysqli_error());
-    return false;
-}
-
-/**
- * Deletes the following user from the database.
- * @param $user_id the database id of the user.
- * @return boolean whether the user was successfully deleted.
- */
-function delete_user($user_id)
-{
-    global $connection;
-    $user_table = USER_TABLE;
-    $trip_table = 'trip';
-    $s_user_id = functions\sanitize_string($user_id);
-    $users_table_delete = mysqli_query($connection, "DELETE FROM $user_table WHERE id = $s_user_id");
-    $users_trips = mysqli_query($connection, "SELECT * FROM $trip_table WHERE driver_id=$s_user_id");
-    $num_rows = mysqli_num_rows($users_trips);
-    if ($users_table_delete) {
-        if ($users_trips) {
-            for ($i = 0; $i < $num_rows; ++$i) {
-                $row = mysqli_fetch_assoc($users_trips);
-                $trip_delete = database\delete_trip($row['id']);
-
-            }
-            return true;
-        }
-        return true; // No trips associated with the user
-    }
-    return false; // Failed to delete User
-}
-
-/**
  * Gets the user specified by id.
  * @param id the row id of the user.
  * @return row the user row in the database without password, NULL otherwise.
@@ -224,51 +165,6 @@ function get_user($id)
         return mysqli_fetch_assoc($result);
     return NULL;
 }
-
-/**
- * Gets all the users in the Database as well as their info
- * @return returns an array of all of the users in the database
- */
-
-function get_all_users()
-{
-    global $connection;
-    $users_table = USER_TABLE;
-    $users_query = "SELECT *
-                    FROM $users_table";
-    $query_result = mysqli_query($connection, $users_query);
-    $rows = array();
-    $num_rows = mysqli_num_rows($query_result);
-    if ($query_result) {
-        for ($i = 0; $i < $num_rows; ++$i) {
-            $row = mysqli_fetch_assoc($query_result);
-            $rows[] = process_trip_row($row);
-        }
-    }
-    return $rows;
-}
-
-
-/**
- * Process a User's row
- * @param user_id the id of the user
- * @return returns an array of all of the user's details
- */
-function process_user_row($user_id)
-{
-    $row = get_user($user_id);
-    if ($row) {
-
-        $row['id'] = $user_id;
-        $row['first_name'] = $row['first_name'];
-        $row['last_name'] = $row['last_name'];
-        $row['email_address'] = $row['email_address'];
-        $row['drivers_license_id'] = $row['drivers_license_id'];
-        $row['gender'] = $row['gender'];
-    }
-    return $row;
-}
-
 
 /**
  * Checks whether the user exists.
