@@ -127,8 +127,20 @@ include "functions/user.php";
               <td class="destination"><%= destination.address %></td>
               <td class="riders">
                 <% if (status=='DECLINED')  { %> <span class="label label-important">Request Declined</span> <% } %>
-                <% if (status=='PENDING')  { %> <span class="label label-info">Request Pending</span> <% } %>
-                <% if (status=='APPROVED')  { %> <span class="label label-info">Request Approved</span> <% } %>
+                <% if (status=='PENDING')  { %> 
+                  <% if (departure_time < Math.floor(Date.now()/1000)) { %>
+                    <span class="label label-important">Request Declined</span>
+                  <% } else { %>
+                    <span class="label label-info">Request Pending</span>
+                  <% } %>
+                <% } %>
+                <% if (status=='APPROVED')  { %> 
+                  <% if (departure_time < Math.floor(Date.now()/1000)) { %>
+                    <span class="label label-info">Trip Completed</span>
+                  <% } else { %>
+                    <span class="label label-info">Request Approved</span>
+                   <% } %>
+                <% } %>
               </td>
             </tr>
           </script>
