@@ -32,6 +32,7 @@ define(['components/user-interface', 'components/input/text-input'], function (U
         }),
         showAlternatives: true,
         fitSelectedRoutes: true,
+        createMarker: function () { return null; }, // Disable markers
         show: false, // Hide default UI
         lineOptions: {
           styles: [
