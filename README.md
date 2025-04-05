@@ -45,8 +45,10 @@ CREATE DATABASE IF NOT EXISTS ridewithus;
 3. Access the application through your web browser
 
 ## Project Details
-- Software Requirements Specification
-- Software Design Document
-- Software Implementation Document
-- Software Test Document
-- Software User Manual
+
+- [Software Requirements Specification](docs/RequirementDoc_CS253.pdf)
+- [Software Design Document](docs/DesignDoc_CS253.pdf)
+- [Software Implementation Document](docs/ImplementationDoc_CS253.pdf)
+- [Software Test Document](docs/TestDoc_CS253.pdf)
+- [Software User Manual](docs/UserManual_CS253.pdf)
+
