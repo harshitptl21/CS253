@@ -123,22 +123,6 @@ function get_trip($id, $user_id = NULL)
     return NULL;
 }
 
-function get_all_trips()
-{
-    global $connection;
-    $query = "SELECT * FROM " . TRIP_TABLE;
-    $result = mysqli_query($connection, $query);
-    $rows = array();
-    if (!$result)
-        return NULL;
-    $num_rows = mysqli_num_rows($result);
-    for ($i = 0; $i < $num_rows; ++$i) {
-        $row = mysqli_fetch_assoc($result);
-        $rows[] = process_trip_row($row);
-    }
-    return $rows;
-}
-
 function process_trip_row($row, $user_id = NULL)
 {
     $row['origin'] = get_place($row['origin_id']);
