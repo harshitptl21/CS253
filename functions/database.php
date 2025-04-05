@@ -242,7 +242,7 @@ function get_trips_near_on($route, $departure = NULL, $user_id = NULL)
 {
 
     global $connection;
-    $threshold = 0.25; // The Threshold
+    $threshold = 0.01; // The Threshold
     $q_origin_lat = $route['origin']['lat'];
     $q_origin_lon = $route['origin']['lon'];
     $q_dest_lat = $route['destination']['lat'];
@@ -256,7 +256,7 @@ function get_trips_near_on($route, $departure = NULL, $user_id = NULL)
         $departure_condition = "tr.departure_time >= $current_time";
     } else {
         $departure_condition = "tr.departure_time >= $departure
-                                AND tr.departure_time <= $departure + 86400";
+                                AND tr.departure_time <= $departure + 18000";
     }
 
     $search_query =
