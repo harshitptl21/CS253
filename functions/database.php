@@ -255,8 +255,9 @@ function get_trips_near_on($route, $departure = NULL, $user_id = NULL)
         $current_time = time();
         $departure_condition = "tr.departure_time >= $current_time";
     } else {
-        $departure_condition = "tr.departure_time >= $departure
-                                AND tr.departure_time <= $departure + 18000";
+        $current_time = time();
+        $departure_condition = "tr.departure_time >= $current_time
+                                AND tr.departure_time <= $departure + 86400";
     }
 
     $search_query =
