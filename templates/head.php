@@ -22,6 +22,10 @@
   <!--[if lt IE 9]>
     <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
   <![endif]-->
+
+  <!-- Favicon -->
+  <link rel="shortcut icon" type="image/x-icon" href="/img/favicon.ico">
+
 </head>
 <body data-spy="scroll" data-target=".bs-docs-sidebar">
 <?php
