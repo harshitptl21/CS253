@@ -263,20 +263,20 @@ function get_trips_near_on($route, $departure = NULL, $user_id = NULL)
     $search_query =
         "SELECT tr.* FROM $trip_table as tr, $place_table as pl
          WHERE tr.origin_id = pl.id
-             AND pl.lat - 0.25 <= $q_origin_lat
-             AND pl.lat + 0.25 >= $q_origin_lat
-             AND pl.lon - 0.25 <= $q_origin_lon
-             AND pl.lon + 0.25 >= $q_origin_lon
+             AND pl.lat - $threshold <= $q_origin_lat
+             AND pl.lat + $threshold >= $q_origin_lat
+             AND pl.lon - $threshold <= $q_origin_lon
+             AND pl.lon + $threshold >= $q_origin_lon
              AND $departure_condition
         
         AND (tr.id) IN
 
         (SELECT tr.id FROM $trip_table as tr, $place_table as pl
          WHERE tr.destination_id = pl.id
-             AND pl.lat - 0.25 <= $q_dest_lat
-             AND pl.lat + 0.25 >= $q_dest_lat
-             AND pl.lon - 0.25 <= $q_dest_lon
-             AND pl.lon + 0.25 >= $q_dest_lon)";
+             AND pl.lat - $threshold <= $q_dest_lat
+             AND pl.lat + $threshold >= $q_dest_lat
+             AND pl.lon - $threshold <= $q_dest_lon
+             AND pl.lon + $threshold >= $q_dest_lon)";
 
     $result = mysqli_query($connection, $search_query);
     $rows = array();
