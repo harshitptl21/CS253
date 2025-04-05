@@ -3,16 +3,19 @@
 ## Deployed Software
 
 ## Group Members
-- AYUSH YADAV 210251
-- HARSHIT PATEL 210424
-- JATOTH SHASHI VARDAN 230501
-- KANDULA AMARNADHU 230522
-- PAL AJAY RAMSAGAR 230725
-- ROHIT VINOD ATKURKAR 230872
-- SANGA BADRI 230911
-- SUGALI YASHWANTH NAIK 231046
-- SUNANDINI BANSAL EXY24032
-- V HARIVANSH 231109
+
+|NAME                   |ROLL NO. |
+|-----------------------|---------|
+|AYUSH YADAV            |210251   |
+|HARSHIT PATEL          |210424   |
+|JATOTH SHASHI VARDAN   |230501   |
+|KANDULA AMARNADHU      |230522   |
+|PAL AJAY RAMSAGAR      |230725   |
+|ROHIT VINOD ATKURKAR   |230872   |
+|SANGA BADRI            |230911   |
+|SUGALI YASHWANTH NAIK  |231046   |
+|SUNANDINI BANSAL       |EXY24032 |
+|V HARIVANSH            |231109   |
 
 ## Project Overview
 RideWithUs is a web-based carpooling application that connects drivers and riders for shared trips. The application allows users to create trips, search for available rides, and manage ride requests.
