@@ -28,6 +28,9 @@ define(['components/input/text-input'], function(TextInput) {
         this.setError('Not within valid range.');
         return null;
       }
+      else {
+        this.removeError();
+      }
       return val;
     };
 
