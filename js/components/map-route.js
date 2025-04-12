@@ -123,7 +123,8 @@ define(['components/user-interface', 'components/input/text-input'], function (U
         const resultItem = $('<div>')
           .addClass('search-result')
           .text(result.label)
-          .on('click', () => {
+          .on('mousedown', (e) => {
+            e.preventDefault();  // Prevent blur event
             // Just update input text first
             input.val(result.label);
             resultsDiv.remove();
