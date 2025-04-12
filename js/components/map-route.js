@@ -61,6 +61,15 @@ define(['components/user-interface', 'components/input/text-input'], function (U
           this.handleRouteFound(routes[0]);
         }
       });
+
+      // Handle focus and blur events to remove search results
+      this.from.on('blur', () => {
+        this.from.parent().find('.search-results').remove(); // Remove search results when 'from' loses focus
+      });
+
+      this.to.on('blur', () => {
+        this.to.parent().find('.search-results').remove(); // Remove search results when 'to' loses focus
+      });
     }
 
     setupMapClicking() {
