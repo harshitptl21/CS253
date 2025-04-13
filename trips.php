@@ -84,66 +84,66 @@ include "functions/user.php";
     </div>
   </div>
   <script type="text/template" id="trip-row-template">
-            <tr id="trip-<%= id %>">
-              <td class="departure"><%= departure_string %></td>
-              <td class="origin"><%= origin.address %></td>
-              <td class="destination"><%= destination.address %></td>
-              <td class="riders"><span class="badge badge-info"><%= spots_taken %></span></td>
-              <td class="action">
-                <div class="btn-group">
-                  <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown-menu"><i class="icon icon-white icon-road"></i> Manage Trip <span class="caret"></span></button>
-                  <ul class="dropdown-menu">
-                    <li><a class="button-ride-requests" data-trip-id="<%= id %>"><i class="icon icon-user"></i> Ride Requests</a></li>
-                    <li class="divider"></li>
-                    <li><a class="button-delete-trip" data-trip-id="<%= id %>"><i class="icon-trash"></i> Delete</a></li>
-                  </ul>
-                </div>
-              </td>
-            </tr>
-          </script>
+    <tr id="trip-<%= id %>">
+      <td class="departure"><%= departure_string %></td>
+      <td class="origin"><%= origin.address %></td>
+      <td class="destination"><%= destination.address %></td>
+      <td class="riders"><span class="badge badge-info"><%= spots_taken %></span></td>
+      <td class="action">
+        <div class="btn-group">
+          <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown-menu"><i class="icon icon-white icon-road"></i> Manage Trip <span class="caret"></span></button>
+          <ul class="dropdown-menu">
+            <li><a class="button-ride-requests" data-trip-id="<%= id %>"><i class="icon icon-user"></i> Ride Requests</a></li>
+            <li class="divider"></li>
+            <li><a class="button-delete-trip" data-trip-id="<%= id %>"><i class="icon-trash"></i> Delete</a></li>
+          </ul>
+        </div>
+      </td>
+    </tr>
+  </script>
   <script type="text/template" id="rider-request-template">
-            <div class="accordion-group">
-              <div class="accordion-heading">
-                <a class="accordion-toggle" data-toggle="collapse" href="#accordion-rider-<%= rider.id %>">
-                  <label for="rider-<%= rider.id %>"><i class="icon icon-user"></i> <%= rider.first_name %> <%= rider.last_name %></label>
-                </a>
-                <div class="btn-group" id="rider-<%= rider.id %>-actions">
-                  <button data-action="DECLINED" data-id="<%= rider.id %>" type="button" class="btn btn-primary <% if (status=='DECLINED') { %>active<% } %>">Decline</button>
-                  <button data-action="PENDING" data-id="<%= rider.id %>" type="button" class="btn btn-primary <% if (status=='PENDING') { %>active<% } %>">Ignore</button>
-                  <button data-action="APPROVED" data-id="<%= rider.id %>" type="button" class="btn btn-primary <% if (status=='APPROVED') { %>active<% } %>">Approve</button>
-                </div>
-              </div>
-              <div id="accordion-rider-<%= rider.id %>" class="accordion-body collapse">
-                <div class="accordion-inner">
-                  <strong><i class="icon icon-comment"></i> Message: </strong><%= message %><br>
-                </div>
-              </div>
-            </div>
-          </script>
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <a class="accordion-toggle" data-toggle="collapse" href="#accordion-rider-<%= rider.id %>">
+          <label for="rider-<%= rider.id %>"><i class="icon icon-user"></i> <%= rider.first_name %> <%= rider.last_name %> -- <%= rider.gender == 1 ? 'Male' : 'Female' %><br><i class="icon icon-envelope"></i> <%= rider.email_address %></label>
+        </a>
+        <div class="btn-group" id="rider-<%= rider.id %>-actions">
+          <a data-action="DECLINED" data-id="<%= rider.id %>" type="button" href="/trips.php" class="btn btn-primary <% if (status=='DECLINED') { %>active<% } %>">Decline</a>
+          <a data-action="PENDING" data-id="<%= rider.id %>" style="display: none;" type="button" href="/trips.php" class="btn btn-primary <% if (status=='PENDING') { %>active<% } %>">Ignore</a>
+          <a data-action="APPROVED" data-id="<%= rider.id %>" type="button" href="/trips.php" class="btn btn-primary <% if (status=='APPROVED') { %>active<% } %>">Approve</a>
+        </div>
+      </div>
+      <div id="accordion-rider-<%= rider.id %>" class="accordion-body collapse">
+        <div class="accordion-inner">
+          <strong><i class="icon icon-comment"></i> Message: </strong><%= message %><br>
+        </div>
+      </div>
+    </div>
+  </script>
   <script type="text/template" id="ride-row-template">
-            <tr id="ride-<%= id %>">
-              <td class="departure"><%= departure_string %></td>
-              <td class="origin"><%= origin.address %></td>
-              <td class="destination"><%= destination.address %></td>
-              <td class="riders">
-                <% if (status=='DECLINED')  { %> <span class="label label-important">Request Declined</span> <% } %>
-                <% if (status=='PENDING')  { %> 
-                  <% if (departure_time < Math.floor(Date.now()/1000)) { %>
-                    <span class="label label-important">Request Declined</span>
-                  <% } else { %>
-                    <span class="label label-info">Request Pending</span>
-                  <% } %>
-                <% } %>
-                <% if (status=='APPROVED')  { %> 
-                  <% if (departure_time < Math.floor(Date.now()/1000)) { %>
-                    <span class="label label-info">Trip Completed</span>
-                  <% } else { %>
-                    <span class="label label-info">Request Approved</span>
-                   <% } %>
-                <% } %>
-              </td>
-            </tr>
-          </script>
+    <tr id="ride-<%= id %>">
+      <td class="departure"><%= departure_string %></td>
+      <td class="origin"><%= origin.address %></td>
+      <td class="destination"><%= destination.address %></td>
+      <td class="riders">
+        <% if (status=='DECLINED')  { %> <span class="label label-important">Request Declined</span> <% } %>
+        <% if (status=='PENDING')  { %> 
+          <% if (departure_time < Math.floor(Date.now()/1000)) { %>
+            <span class="label label-important">Request Declined</span>
+          <% } else { %>
+            <span class="label label-info">Request Pending</span>
+          <% } %>
+        <% } %>
+        <% if (status=='APPROVED')  { %> 
+          <% if (departure_time < Math.floor(Date.now()/1000)) { %>
+            <span class="label label-info">Trip Completed</span>
+          <% } else { %>
+            <span class="label label-info">Request Approved</span>
+            <% } %>
+        <% } %>
+      </td>
+    </tr>
+  </script>
   <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
   <script src="js/lib/underscore.min.js"></script>
   <script src="js/trips.js"></script>
