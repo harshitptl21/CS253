@@ -90,7 +90,7 @@ include "templates/head.php";
     </form>
   </div>
   <div class="modal-footer">
-    <a href="#" id='modal-request-ride-submit' class="btn btn-primary">Request</a>
+    <a href="trips.php" id='modal-request-ride-submit' class="btn btn-primary">Request</a>
     <a data-dismiss="modal" class="btn secondary">Cancel</a>
   </div>
 </div>
