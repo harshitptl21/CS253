@@ -41,6 +41,7 @@ include "functions/user.php";
       <table class="table table-bordered table-hover trips" id="trips-riding-table">
         <thead>
           <tr>
+            <th class="driver">Driver</th>
             <th class="departure">Departure</th>
             <th class="origin">Origin</th>
             <th class="destination">Destination</th>
@@ -122,6 +123,7 @@ include "functions/user.php";
   </script>
   <script type="text/template" id="ride-row-template">
     <tr id="ride-<%= id %>">
+      <td class="driver"><%= driver.first_name %> <%= driver.last_name %><br><%= driver.gender == 1 ? 'Male' : 'Female' %><br><i class="icon icon-envelope"></i> <%= driver.email_address %></td>
       <td class="departure"><%= departure_string %></td>
       <td class="origin"><%= origin.address %></td>
       <td class="destination"><%= destination.address %></td>
