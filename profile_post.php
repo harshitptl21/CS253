@@ -62,7 +62,7 @@ if ($_GET) {
         }
 
         // Update password
-        if (user\update_password($user_id, $new_password)) {
+        if (user\update_password($_SESSION['email_address'], $new_password)) {
             functions\json_respond('OK', 'Password updated successfully');
         } else {
             functions\json_respond('ERROR', 'Failed to update password');

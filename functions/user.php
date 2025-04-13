@@ -205,19 +205,19 @@ function update_drivers_license($user_id, $drivers_license_id)
 }
 
 /**
- * Updates the user's password.
- * @param user_id the ID of the user to update
- * @param new_password the new password
- * @return boolean whether the operation was successful
+ * Updates the password for a user.
+ * @param email the email address of the user
+ * @param new_password the new password to set
+ * @return bool true if successful, false otherwise
  */
-function update_password($user_id, $new_password)
+function update_password($email, $new_password)
 {
     global $connection;
     $user_table = USER_TABLE;
-    $s_user_id = functions\sanitize_string($user_id);
+    $s_email = functions\sanitize_string($email);
     $encrypted_password = encrypt_password($new_password);
 
-    $query = "UPDATE $user_table SET password='$encrypted_password' WHERE id=$s_user_id";
+    $query = "UPDATE $user_table SET password='$encrypted_password' WHERE email_address='$s_email'";
 
     if (mysqli_query($connection, $query)) {
         return true;
