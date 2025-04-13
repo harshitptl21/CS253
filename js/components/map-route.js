@@ -103,6 +103,11 @@ define(['components/user-interface', 'components/input/text-input'], function (U
         return;
       }
 
+      // Reset border colors when input changes
+      this.from.css('border-color', '');
+      this.to.css('border-color', '');
+      this.container.find('.error-msg').remove();
+
       try {
         const results = await this.geocoder.search({ query });
         this.showSearchResults(input, results);
@@ -169,6 +174,25 @@ define(['components/user-interface', 'components/input/text-input'], function (U
           lng: result.x
         };
         this.result.routes[0].legs[0].end_address = result.label;
+      }
+
+      // Check if both locations are set and are the same
+      if (this.result.routes[0].legs[0].start_location && this.result.routes[0].legs[0].end_location) {
+        const start = this.result.routes[0].legs[0].start_location;
+        const end = this.result.routes[0].legs[0].end_location;
+
+        if (start.lat === end.lat && start.lng === end.lng) {
+          this.from.css('border-color', '#b94a48');
+          this.to.css('border-color', '#b94a48');
+          // Remove any existing error messages first
+          this.container.find('.error-msg').remove();
+          $('<div class="help-inline error-msg" style="color: #b94a48; display: block; margin-top: 5px;">Start and end locations cannot be the same.</div>')
+            .insertAfter(this.container.find('.control-group').last())
+            .fadeOut(5000, function () {
+              $(this).remove();
+            });
+          return;
+        }
       }
 
       // Update markers
@@ -393,6 +417,23 @@ define(['components/user-interface', 'components/input/text-input'], function (U
 
       const route = this.result.routes[0];
       const leg = route.legs[0];
+
+      // Check if locations are the same when trying to share
+      if (leg.start_location && leg.end_location) {
+        if (leg.start_location.lat === leg.end_location.lat &&
+          leg.start_location.lng === leg.end_location.lng) {
+          this.from.css('border-color', '#b94a48');
+          this.to.css('border-color', '#b94a48');
+          // Remove any existing error messages first
+          this.container.find('.error-msg').remove();
+          $('<div class="help-inline error-msg" style="color: #b94a48; display: block; margin-top: 5px;">Start and end locations cannot be the same.</div>')
+            .insertAfter(this.container.find('.control-group').last())
+            .fadeOut(5000, function () {
+              $(this).remove();
+            });
+          return null;
+        }
+      }
 
       const origin = {
         address: leg.start_address,
