@@ -35,7 +35,7 @@ include "templates/head.php";
             <div class="controls">
               <div class="input-append date" id="search-departure-date" data-date=""
                 data-date-format="dd-mm-yyyy">
-                <input class="span8" size="16" type="text">
+                <input class="span8" size="16" type="text" readonly>
                 <span class="add-on"><i class="icon-calendar"></i></span>
               </div>
             </div>
