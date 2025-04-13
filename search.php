@@ -35,7 +35,7 @@ include "templates/head.php";
             <div class="controls">
               <div class="input-append date" id="search-departure-date" data-date=""
                 data-date-format="dd-mm-yyyy">
-                <input class="span8" size="16" type="text">
+                <input class="span8" size="16" type="text" readonly>
                 <span class="add-on"><i class="icon-calendar"></i></span>
               </div>
             </div>
@@ -90,7 +90,7 @@ include "templates/head.php";
     </form>
   </div>
   <div class="modal-footer">
-    <a href="#" id='modal-request-ride-submit' class="btn btn-primary">Request</a>
+    <a href="trips.php" id='modal-request-ride-submit' class="btn btn-primary">Request</a>
     <a data-dismiss="modal" class="btn secondary">Cancel</a>
   </div>
 </div>
@@ -108,6 +108,7 @@ include "templates/head.php";
   <div id="collapse-<%= id %>" class="accordion-body collapse">
     <div class="accordion-inner">
       <strong><i class="icon icon-user"></i> Driver: </strong><%= driver.first_name %> <%= driver.last_name %><br>
+      <strong><i class="icon icon-envelope"></i> Contact info: </strong><%= driver.email_address %><br>
       <strong><i class="icon icon-road"></i> Trip Length: </strong><%= length %><br>
       <strong><i class="icon icon-tasks"></i> Spots Remaining: </strong><%= spots - spots_taken %><br>
       <strong><i class="icon icon-comment"></i> Message: </strong><%= message %><br>
@@ -128,7 +129,8 @@ include "templates/head.php";
   <strong><i class="icon icon-map-marker"></i> From: </strong><%= origin.address %><br>
   <strong><i class="icon icon-map-marker"></i> To: </strong><%= destination.address %><br>
   <strong><i class="icon icon-time"></i> Departure: </strong><%= departure_string %><br>
-  <strong><i class="icon icon-user"></i> Driver: </strong><%= driver.first_name %> <%= driver.last_name %><br>
+  <strong><i class="icon icon-user"></i> Driver: </strong><%= driver.first_name %> <%= driver.last_name %> -- <%= driver.gender == 1 ? 'Male' : 'Female' %><br>
+  <strong><i class="icon icon-envelope"></i> Contact info: </strong><%= driver.email_address %><br>
   <strong><i class="icon icon-road"></i> Trip Length: </strong><%= length %><br>
   <strong><i class="icon icon-tasks"></i> Spots Remaining: </strong><%= spots - spots_taken %><br>
   <strong><i class="icon icon-comment"></i> Message: </strong><%= message %><br>

@@ -6,10 +6,27 @@ table.trips td {
     vertical-align: middle;
 }
 
-table.trips .departure { width: 150px; }
-table.trips .riders { width: 50px; text-align: center; }
-table.trips .action { width: 150px; text-align: center; }
-table.trips .status { width: 120px; }
+table.trips .driver {
+    width: 100px;
+}
+
+table.trips .departure {
+    width: 150px;
+}
+
+table.trips .riders {
+    width: 50px;
+    text-align: center;
+}
+
+table.trips .action {
+    width: 150px;
+    text-align: center;
+}
+
+table.trips .status {
+    width: 120px;
+}
 
 #trips-driving-status {
     text-align: center;

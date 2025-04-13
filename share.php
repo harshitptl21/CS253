@@ -36,13 +36,13 @@
             <div class="controls controls-row">
               <!-- Date Picker -->
               <div class="input-append date" id="share-departure-date" data-date="" data-date-format="dd-mm-yyyy">
-               <input class="span7" size="16" type="text" >
+               <input class="span7" size="16" type="text" readonly>
                  <span class="add-on"><i class="icon-calendar"></i></span>
               </div>
 
               <!-- Time Picker -->
               <div class="input-append bootstrap-timepicker">
-               <input id="share-departure-time" type="text" class="input-mini">
+               <input id="share-departure-time" type="text" class="input-mini" readonly>
                <span class="add-on"><i class="icon-time"></i></span>
               </div>
             </div>
