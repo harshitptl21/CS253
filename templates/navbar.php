@@ -49,9 +49,9 @@ function user_status()
 {
   if (isset($_SESSION['user_id'])) {
     echo '<ul class="nav pull-right"><li><a href="/functions/logout.php">Logout</a></li></ul>';
-    echo '<p class="navbar-text pull-right" id="logged-in">';
+    echo '<a class="navbar-text pull-right" id="logged-in" href="/profile.php">';
     $first_name = $_SESSION['first_name'];
-    echo "Logged in as $first_name.</p>";
+    echo "Logged in as $first_name.</a>";
   } else {
     global $not_logged_in;
     echo $not_logged_in;

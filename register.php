@@ -35,7 +35,8 @@ include 'templates/head.php';
       <div class="control-group">
         <label class="control-label" for="register-password">Password</label>
         <div class="controls">
-          <input type="password" class="input-medium" id="register-password" name="register-password">
+          <input type="password" class="input-medium" id="register-password" name="register-password"
+          pattern=".{8,}" title="Password must be atleast 8 characters long">
         </div>
       </div>
 
@@ -51,7 +52,8 @@ include 'templates/head.php';
       <div class="control-group">
         <label class="control-label" for="register-drivers-license-id">Driver's License ID</label>
         <div class="controls">
-          <input type="text" class="input-xlarge" id="register-drivers-license-id" name="register-drivers-license-id">
+          <input type="text" class="input-xlarge" id="register-drivers-license-id" name="register-drivers-license-id" pattern="^[A-Za-z0-9]{0,15}$"
+          title="Driver's license ID must be up to 15 characters long and contain only letters and numbers">
         </div>
       </div>
 

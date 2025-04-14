@@ -181,4 +181,48 @@ function user_exists($email)
     else
         return false;
 }
+
+/**
+ * Updates the user's driving license ID.
+ * @param user_id the ID of the user to update
+ * @param drivers_license_id the new driving license ID (can be empty)
+ * @return boolean whether the operation was successful
+ */
+function update_drivers_license($user_id, $drivers_license_id)
+{
+    global $connection;
+    $user_table = USER_TABLE;
+    $s_user_id = functions\sanitize_string($user_id);
+    $s_license = functions\sanitize_string($drivers_license_id);
+
+    $query = "UPDATE $user_table SET drivers_license_id='$s_license' WHERE id=$s_user_id";
+
+    if (mysqli_query($connection, $query)) {
+        return true;
+    }
+    error_log("Failed to update driving license: " . mysqli_error($connection));
+    return false;
+}
+
+/**
+ * Updates the password for a user.
+ * @param email the email address of the user
+ * @param new_password the new password to set
+ * @return bool true if successful, false otherwise
+ */
+function update_password($email, $new_password)
+{
+    global $connection;
+    $user_table = USER_TABLE;
+    $s_email = functions\sanitize_string($email);
+    $encrypted_password = encrypt_password($new_password);
+
+    $query = "UPDATE $user_table SET password='$encrypted_password' WHERE email_address='$s_email'";
+
+    if (mysqli_query($connection, $query)) {
+        return true;
+    }
+    error_log("Failed to update password: " . mysqli_error($connection));
+    return false;
+}
 ?>
