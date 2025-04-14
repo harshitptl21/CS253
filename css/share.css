@@ -50,3 +50,43 @@ body>.container-fluid>.row-fluid {
 .form-actions {
     padding-bottom: 0;
 }
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+    #share-bar {
+        float: none;
+        min-width: 100%;
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+
+    .input-append {
+        margin: 5px;
+    }
+
+    #map_canvas {
+        min-width: 100%;
+        width: 100%;
+        min-height: 300px;
+    }
+
+    .container-fluid .row-fluid {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #share .controls {
+        margin-left: 0;
+    }
+
+    #share .control-label {
+        width: auto;
+        text-align: left;
+        margin-bottom: 5px;
+    }
+
+    .form-actions {
+        text-align: center;
+    }
+}
