@@ -71,3 +71,56 @@ body>.container-fluid>.row-fluid {
 .search-result:hover {
     background: #f0f0f0;
 }
+
+/* Media Queries */
+@media screen and (max-width: 768px) {
+    #search-bar {
+        float: none;
+        min-width: 100%;
+        max-width: 100%;
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 15px;
+    }
+
+    #map_canvas {
+        min-width: 100%;
+        width: 100%;
+        min-height: 300px;
+    }
+
+    .container-fluid .row-fluid {
+        display: flex;
+        flex-direction: column;
+    }
+
+    #search .controls {
+        margin-left: 0;
+    }
+
+    #search .control-label {
+        width: auto;
+        text-align: left;
+        margin-bottom: 5px;
+    }
+
+    #search .form-actions {
+        text-align: center;
+        padding: 0 10px;
+    }
+
+    #search-results {
+        max-height: 200px;
+    }
+
+    .trip-info button {
+        float: none;
+        width: 100%;
+        margin-bottom: 8px;
+    }
+
+    #modal-trip-info {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
